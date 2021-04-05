@@ -445,27 +445,27 @@ describe("BootstrapCommand", () => {
       expect(installedPackagesInDirectories(testDir)).toMatchSnapshot();
     });
 
-    it("gets network mutex when --npm-client=yarn", async () => {
-      const testDir = await initFixture("cold");
+    // it("gets network mutex when --npm-client=yarn", async () => {
+    //   const testDir = await initFixture("cold");
 
-      await lernaBootstrap(testDir)("--npm-client", "yarn");
+    //   await lernaBootstrap(testDir)("--npm-client", "yarn");
 
-      expect(npmInstallDependencies.mock.calls[0][2]).toMatchObject({
-        npmClient: "yarn",
-        mutex: expect.stringMatching(/^network:\d+$/),
-      });
-    });
+    //   expect(npmInstallDependencies.mock.calls[0][2]).toMatchObject({
+    //     npmClient: "yarn",
+    //     mutex: expect.stringMatching(/^network:\d+$/),
+    //   });
+    // });
 
-    it("gets user defined mutex when --npm-client=yarn", async () => {
-      const testDir = await initFixture("cold");
+    // it("gets user defined mutex when --npm-client=yarn", async () => {
+    //   const testDir = await initFixture("cold");
 
-      await lernaBootstrap(testDir)("--npm-client", "yarn", "--mutex", "file:/test/this/path");
+    //   await lernaBootstrap(testDir)("--npm-client", "yarn", "--mutex", "file:/test/this/path");
 
-      expect(npmInstallDependencies.mock.calls[0][2]).toMatchObject({
-        npmClient: "yarn",
-        mutex: "file:/test/this/path",
-      });
-    });
+    //   expect(npmInstallDependencies.mock.calls[0][2]).toMatchObject({
+    //     npmClient: "yarn",
+    //     mutex: "file:/test/this/path",
+    //   });
+    // });
 
     it("hoists appropriately", async () => {
       const testDir = await initFixture("cold");
@@ -591,10 +591,10 @@ describe("BootstrapCommand", () => {
       expect(npmInstallDependencies).not.toHaveBeenCalled();
       expect(npmInstall).toHaveBeenLastCalledWith(
         expect.objectContaining({ name: "root" }),
-        expect.objectContaining({
-          npmClient: "yarn",
-          mutex: expect.stringMatching(/^network:\d+$/),
-        })
+        // expect.objectContaining({
+        //   npmClient: "yarn",
+        //   mutex: expect.stringMatching(/^network:\d+$/),
+        // })
       );
     });
 
